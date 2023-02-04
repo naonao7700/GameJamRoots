@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     StageManager stageManager;
 
-    Vector3 dir;
+
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
 
         v *= Time.deltaTime * moveSpeed;
 
-        
+
         if (stageManager.GetStageSizeMin > transform.position.x + v.x - playerSize || transform.position.x + v.x + playerSize > stageManager.GetStageSizeMax)
         {
             v.x = 0;
@@ -88,21 +88,13 @@ public class Player : MonoBehaviour
             v.z = 0;
         }
 
-        
-        dir = v;
-        
 
-        
         transform.Translate(v);
     }
 
     void moveAnimation(Vector3 v)
     {
-       
-        if(isHarvest)
-        {
-            return;
-        }
+
         if (v.z > 0)
         {
             animator.SetBool("isMove", true);
@@ -127,12 +119,11 @@ public class Player : MonoBehaviour
             animator.Play("LeftMove");
             return;
         }
-        if (v.x * v.z == 0 )
+        if (v.x * v.z == 0 || isHarvest)
         {
             animator.SetBool("isMove", false);
             return;
         }
-        
 
 
     }
@@ -144,12 +135,11 @@ public class Player : MonoBehaviour
             //UI•\Ž¦
             if (!harvestSprite.enabled)
             {
-                
+
                 harvestSprite.enabled = true;
             }
             if (Input.GetKey(KeyCode.Return) && !isHarvest)
             {
-                
                 StartCoroutine(HarvestCarrots(other.gameObject));
             }
 <<<<<<< Updated upstream
@@ -186,8 +176,6 @@ public class Player : MonoBehaviour
 
         isHarvest = true;
 
-       
-
         yield return null;
 
 
@@ -215,32 +203,10 @@ public class Player : MonoBehaviour
                 
          }*/
 
-        if (dir.z > 0)
-        {
-            animator.Play("ForwardHarvest");
-        }
-        else if (dir.z < 0)
-        {
-
-            animator.Play("BackHarvest");
-
-        }
-        else if (dir.x > 0)
-        {
-
-            animator.Play("RightHarvest");
-
-        }
-        else if (dir.x < 0)
-        {
-            animator.Play("LeftHarvest");
-        }
-
         Destroy(carrot);
         harvestSprite.enabled = false;
         yield return new WaitForSeconds(harvestTime);
         isHarvest = false;
-        
 
 >>>>>>> Stashed changes
         yield break;

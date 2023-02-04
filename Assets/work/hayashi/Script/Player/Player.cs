@@ -142,10 +142,8 @@ public class Player : MonoBehaviour
             {
                 StartCoroutine(HarvestCarrots(other.gameObject));
             }
-<<<<<<< Updated upstream
-            StartCoroutine(HarvestCarrots());
-=======
->>>>>>> Stashed changes
+
+            
         }
 
     }
@@ -159,18 +157,8 @@ public class Player : MonoBehaviour
     }
 
     //ŽûŠn
-<<<<<<< Updated upstream
-    IEnumerator HarvestCarrots()
-    {
-        if (Input.GetKey(KeyCode.Return) && !isHarvest )
-        {
-            isHarvest = true;
-            //ƒXƒRƒA‰ÁŽZ
-            GameManager.Instance.AddScore(10);
-            yield return new WaitForSeconds(1f);
-            isHarvest = false;
-        }
-=======
+
+    
     IEnumerator HarvestCarrots(GameObject carrot)
     {
 
@@ -208,7 +196,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(harvestTime);
         isHarvest = false;
 
->>>>>>> Stashed changes
+
         yield break;
     }
 

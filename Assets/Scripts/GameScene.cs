@@ -8,7 +8,11 @@ namespace Scenes
     public class GameScene : BaseScene
     {
         [SerializeField] private float gameTime;
-        [SerializeField] private AudioClip timeUp;
+
+
+        [SerializeField] private AudioClip startSE;
+        [SerializeField] private AudioClip timeUpSE;
+
         [SerializeField] private Score score;
 
         [SerializeField] private Text text;
@@ -22,9 +26,11 @@ namespace Scenes
         {
             base.OnEnter();
             GameManager.Instance.SetScore(0);
+            score.SetText(GameManager.Instance.GetScore());
             GameTimer.Instance.SetTime(gameTime);
             nextSceneID = SceneID.Result;
             text.enabled = false;
+            GoldenManager.Instance.ResetGoldenTime();
         }
 
         protected override void OnInit()
@@ -41,6 +47,7 @@ namespace Scenes
             {
                 if( initStep == 0 )
                 {
+                    GameManager.Instance.PlaySE(startSE);
                     initStep++;
                     text.text = "GO!";
                     waitTimer.Reset(goTime);
@@ -70,7 +77,8 @@ namespace Scenes
             text.enabled = true;
             text.text = "Finish!";
             waitTimer.Reset(finishTime);
-            GameManager.Instance.PlaySE(timeUp);
+            GameManager.Instance.PlaySE(timeUpSE);
+            GoldenManager.Instance.EndGoldenTime();
         }
 
         protected override void FinishUpdate()

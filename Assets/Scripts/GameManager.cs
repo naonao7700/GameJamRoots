@@ -81,4 +81,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //フェードの時間
     [SerializeField] private float m_fadeTime;
     public float FadeTime => m_fadeTime;
+
+    public void SetBGMVolume( float rate )
+    {
+        audioSource.volume = Mathf.Lerp(0.0f, 0.25f, rate);
+    }
 }

@@ -7,6 +7,7 @@ namespace Scenes
 {
     public class ResultScene : BaseScene
     {
+        [SerializeField] private AudioClip submitSE;
         [SerializeField] private float fadeTime;
         [SerializeField] private Image backGround;
         [SerializeField] private GameObject uiObject;
@@ -43,11 +44,13 @@ namespace Scenes
         {
             if( Input.GetKeyDown(KeyCode.Space))
             {
+                GameManager.Instance.PlaySE(submitSE);
                 nextSceneID = SceneID.Game;
                 OnPhaseChange(PhaseID.Exit);
             }
             else if( Input.GetKeyDown(KeyCode.Escape))
             {
+                GameManager.Instance.PlaySE(submitSE);
                 nextSceneID = SceneID.Title;
                 OnPhaseChange(PhaseID.Exit);
             }

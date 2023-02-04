@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
 
                 harvestSprite.enabled = true;
             }
-            if (Input.GetKey(KeyCode.Return) && !isHarvest)
+            if (Input.GetKey(KeyCode.Space) && !isHarvest)
             {
 
 
@@ -220,7 +220,7 @@ public class Player : MonoBehaviour
                 carrot.carrotStop = true;
                 for (int n = 0; n < 2; n++)
                 {
-                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
                     yield return null;
                 }
                 gameManager.AddScore(30); ;
@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
                 carrot.carrotStop = true;
                 for (int n = 0; n < 1; n++)
                 {
-                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
                     yield return null;
                 }
                 gameManager.AddScore(20); ;
@@ -267,6 +267,12 @@ public class Player : MonoBehaviour
         {
 
             animator.Play("LeftHarvest");
+        }
+
+        //ÉSÅ[ÉãÉfÉìÇ…ÇÒÇ∂ÇÒéÊìæÇµÇΩéû
+        if( carrot.CheckGold())
+        {
+            GoldenManager.Instance.StartGoldenTime();
         }
 
         Destroy(carrot.gameObject);

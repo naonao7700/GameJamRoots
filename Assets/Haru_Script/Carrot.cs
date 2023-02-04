@@ -108,35 +108,28 @@ public class Carrot : MonoBehaviour
 
         
         //金人参じゃないとき
-        if( GoldFlag )
-        //if (CarrotManager.Gold == false)
+        if (time >= 2.5f)
         {
-        
-
-            if (time >= 2.5f)
-            {
-                state = CarrotState.Active02;
-                //人参の状態変化（枯れる）
-                Carrot3.SetActive(true);
-                Carrot2.SetActive(false);
-            }
-            else if (time >= 1.5f)
-            {
-                state = CarrotState.Active01;
-                //人参の状態変化（傷つき）
-                Carrot2.SetActive(true);
-                Carrot1.SetActive(false);
-            }
-            else if (time > 0.5)
-            {
-                state = CarrotState.Active00;
-            }
-            if (time <= 0.5f)
-            {
-                //生えてくる
-                transform.position = transform.position + transform.up * 1 * Time.deltaTime;
-            }
+            state = CarrotState.Active02;
+            //人参の状態変化（枯れる）
+            Carrot3.SetActive(true);
+            Carrot2.SetActive(false);
         }
-
+        else if (time >= 1.5f)
+        {
+            state = CarrotState.Active01;
+            //人参の状態変化（傷つき）
+            Carrot2.SetActive(true);
+            Carrot1.SetActive(false);
+        }
+        else if (time > 0.5)
+        {
+            state = CarrotState.Active00;
+        }
+        if (time <= 0.5f)
+        {
+            //生えてくる
+            transform.position = transform.position + transform.up * 1 * Time.deltaTime;
+        }
     }
 }

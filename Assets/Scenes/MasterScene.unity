@@ -2897,6 +2897,17 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &907173642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8885145004688771369, guid: 9887f12b4e5381c4fa5e719a405b08e8, type: 3}
+  m_PrefabInstance: {fileID: 1419492261}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de90183ac4d0cd6468014d10eb254ef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &922214141
 GameObject:
   m_ObjectHideFlags: 0
@@ -5095,6 +5106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 90
+  player: {fileID: 907173642}
   startSE: {fileID: 8300000, guid: 5198bb0a04870aa47be395e162a56880, type: 3}
   timeUpSE: {fileID: 8300000, guid: c54274b8e5bc6b240abeefdc44c3df79, type: 3}
   score: {fileID: 148041024}

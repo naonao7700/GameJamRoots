@@ -8,6 +8,7 @@ namespace Scenes
     public class GameScene : BaseScene
     {
         [SerializeField] private float gameTime;
+        [SerializeField] private Player player;
 
 
         [SerializeField] private AudioClip startSE;
@@ -31,6 +32,8 @@ namespace Scenes
             nextSceneID = SceneID.Result;
             text.enabled = false;
             GoldenManager.Instance.ResetGoldenTime();
+            player.Initialize();
+
         }
 
         protected override void OnInit()
@@ -85,6 +88,7 @@ namespace Scenes
             waitTimer.Reset(finishTime);
             GameManager.Instance.PlaySE(timeUpSE);
             GoldenManager.Instance.EndGoldenTime();
+            player.GameEnd();
         }
 
         protected override void FinishUpdate()

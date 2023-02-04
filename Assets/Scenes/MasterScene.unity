@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageSizeMin: -4
-  stageSizeMax: 5
+  stageSizeMax: 4
 --- !u!1 &226409462
 GameObject:
   m_ObjectHideFlags: 0

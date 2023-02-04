@@ -8,7 +8,7 @@ public class GoldenManager : SingletonMonoBehaviour<GoldenManager>
     [SerializeField] private AudioSource audioSource;
 
     //ゴールデン状態か判定
-    public bool goldenFlag;
+    public bool goldenFlag = false;
 
     //ゴールデンタイム
     public Timer goldenTimer;

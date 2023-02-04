@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     float moveSpeed;
 
+    [SerializeField]
+    float goldMoveSpeed;
+
     //ŽûŠn‚©‚©‚éŽžŠÔ
     [SerializeField]
     float harvestTime;
@@ -58,7 +61,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(gameManager.IsOutGame)
+        {
+            return;
+        }
+        if (!GoldenManager.Instance.goldenFlag )
+        {
+            animator.SetFloat("animSpeed", 1);
+        }
         Move();
     }
 
@@ -98,7 +108,14 @@ public class Player : MonoBehaviour
             source.Pause();
         }
 
-        v *= Time.deltaTime * moveSpeed;
+        if (GoldenManager.Instance.goldenFlag)
+        {
+            v *= Time.deltaTime * goldMoveSpeed;
+        }
+        else
+        {
+            v *= Time.deltaTime * moveSpeed;
+        }
 
 
         if (stageManager.GetStageSizeMin > transform.position.x + v.x - playerSize || transform.position.x + v.x + playerSize > stageManager.GetStageSizeMax)
@@ -170,12 +187,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Carrot") && !gameManager.IsOutGame)
         {
-            //UI•\Ž¦
-            if (!harvestSprite.enabled)
-            {
-
-                harvestSprite.enabled = true;
-            }
+            
             if (Input.GetKey(KeyCode.Space) && !isHarvest)
             {
 
@@ -188,13 +200,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (harvestSprite.enabled)
-        {
-            harvestSprite.enabled = false;
-        }
-    }
+  
 
     //ŽûŠn
 
@@ -202,6 +208,7 @@ public class Player : MonoBehaviour
     {
 
         isHarvest = true;
+        
         source.PlayOneShot(carrotGrab);
 
         yield return null;
@@ -210,6 +217,28 @@ public class Player : MonoBehaviour
             yield break;
         }
 
+        if (dir.z > 0)
+        {
+
+            animator.Play("ForwardHarvestEnter");
+        }
+        else if (dir.z < 0)
+        {
+
+            animator.Play("BackHarvestEnter");
+
+        }
+        else if (dir.x > 0)
+        {
+
+            animator.Play("RightHarvestEnter");
+
+        }
+        else if (dir.x < 0)
+        {
+
+            animator.Play("LeftHarvestEnter");
+        }
         switch (carrot.GetState())
         {
             case Carrot.CarrotState.Enter:
@@ -217,19 +246,22 @@ public class Player : MonoBehaviour
                 break;
 
             case Carrot.CarrotState.Active00:
+
                 carrot.carrotStop = true;
+                harvestSprite.enabled = true;
                 for (int n = 0; n < 2; n++)
                 {
-                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || GoldenManager.Instance.goldenFlag);
                     yield return null;
                 }
                 gameManager.AddScore(30); ;
                 break;
             case Carrot.CarrotState.Active01:
                 carrot.carrotStop = true;
+                harvestSprite.enabled = true;
                 for (int n = 0; n < 1; n++)
                 {
-                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || GoldenManager.Instance.goldenFlag);
                     yield return null;
                 }
                 gameManager.AddScore(20); ;
@@ -240,44 +272,19 @@ public class Player : MonoBehaviour
                 break;
         }
 
-        if (dir.z > 0)
-        {
-            animator.Play("ForwardHarvest");
-
-
-        }
-        if (dir.z > 0)
-        {
-
-            animator.Play("ForwardHarvest");
-            }
-        else if (dir.z < 0)
-        {
-
-            animator.Play("BackHarvest");
-
-        }
-        else if (dir.x > 0)
-        {
-
-            animator.Play("RightHarvest");
-
-        }
-        else if (dir.x < 0)
-        {
-
-            animator.Play("LeftHarvest");
-        }
+        animator.SetTrigger("isHarvestEnd");
+        
 
         //ƒS[ƒ‹ƒfƒ“‚É‚ñ‚¶‚ñŽæ“¾‚µ‚½Žž
         if( carrot.CheckGold())
         {
             GoldenManager.Instance.StartGoldenTime();
+            animator.SetFloat("animSpeed",2);
         }
 
+
+
         Destroy(carrot.gameObject);
-
-
         harvestSprite.enabled = false;
         source.PlayOneShot(pull);
         yield return new WaitForSeconds(harvestTime);

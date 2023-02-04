@@ -27,17 +27,17 @@ public class CarrotManager : MonoBehaviour
 
     void Update()
     {
-        
+        /*
         if (GameManager.Instance.IsOutGame)
 		{
             return;
-		}
+		}*/
         
         time1 += Time.deltaTime;
         time2 += Time.deltaTime;
 
 
-        Vector3 pos = new Vector3(Random.Range(-4.5f, 4.5f), 0, Random.Range(-4.5f, 4.5f));
+        Vector3 pos = new Vector3(Random.Range(-4.0f, 4.0f), 0, Random.Range(-4.0f, 4.0f));
 
         if (time1 >= wave1)
 		{

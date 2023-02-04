@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a48076758f3ab364c8f70f3fbb5b6e20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aacbd8677c3d9054e83c09986a64ebbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d9e164a68016d7745affe6df97250193, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aacbd8677c3d9054e83c09986a64ebbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 2093304473690038687}
   - component: {fileID: 7429924340901554981}
   m_Layer: 0
-  m_Name: Carrot
+  m_Name: GoldenCarrot
   m_TagString: Carrot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,7 +300,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bf4a7bb1f3030e343addec15a917778a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aacbd8677c3d9054e83c09986a64ebbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

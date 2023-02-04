@@ -5,6 +5,10 @@ using UnityEngine;
 public class CarrotManager : MonoBehaviour
 {
     [SerializeField] GameObject Carrot;
+
+    public AudioClip carrotSpawn;
+    AudioSource audioSource;
+
     #region
     [Header("GenerationTime")]
     public float wave1;
@@ -15,6 +19,7 @@ public class CarrotManager : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -32,12 +37,14 @@ public class CarrotManager : MonoBehaviour
 
         if (time1 >= wave1)
 		{
+            audioSource.PlayOneShot(carrotSpawn);
             Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
             time1 = 0;
         }
         
         if (time2 >= wave2)
         {
+            audioSource.PlayOneShot(carrotSpawn);
             Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
             time2 = 0;
         }

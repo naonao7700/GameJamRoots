@@ -66,7 +66,7 @@ public class Carrot : MonoBehaviour
             if (time <= 0.5f)
             {
                 //¶‚¦‚Ä‚­‚é
-                transform.position = transform.position + transform.up * 1 * Time.deltaTime;
+                transform.position = transform.position + transform.up * 1 * Time.deltaTime / 2;
             }
         }
         

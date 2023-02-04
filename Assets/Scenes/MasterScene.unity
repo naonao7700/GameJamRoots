@@ -833,6 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Carrot: {fileID: 1665573030367903002, guid: f381ae9b2fb4cdd4bbcd3bbaf26d38ec, type: 3}
+  GoldCarrot: {fileID: 0}
   carrotSpawn: {fileID: 8300000, guid: 8e87bc8786677074f8372645620f4618, type: 3}
   wave1: 2
   wave2: 2
@@ -2602,7 +2603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1045b9ef6f2db4db11dd9eebd8acf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: 60
+  gameTime: 1
+  timeUp: {fileID: 8300000, guid: 4e1b080311d38ca4996abcfbe5535aa0, type: 3}
   score: {fileID: 148041024}
   text: {fileID: 226409463}
   readyTime: 1

@@ -19,6 +19,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         audioSource.Play();
     }
 
+    public void PlaySE( AudioClip clip )
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
     //‰Šú‰»ˆ—
     private void Start()
     {

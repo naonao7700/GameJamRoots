@@ -8,6 +8,7 @@ namespace Scenes
     public class GameScene : BaseScene
     {
         [SerializeField] private float gameTime;
+        [SerializeField] private AudioClip timeUp;
         [SerializeField] private Score score;
 
         [SerializeField] private Text text;
@@ -69,6 +70,7 @@ namespace Scenes
             text.enabled = true;
             text.text = "Finish!";
             waitTimer.Reset(finishTime);
+            GameManager.Instance.PlaySE(timeUp);
         }
 
         protected override void FinishUpdate()

@@ -174,9 +174,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2093304473690038688}
   - component: {fileID: 2093304473690038687}
+  - component: {fileID: 7429924340901554981}
   m_Layer: 0
   m_Name: Carrot
-  m_TagString: Untagged
+  m_TagString: Carrot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +189,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093304473690038686}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -197,7 +198,7 @@ Transform:
   - {fileID: 9080354008120788081}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &2093304473690038687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +218,20 @@ MonoBehaviour:
   GoldCarrotEffect: {fileID: 6347538573789699511, guid: 56a2c10422493a043a39ef53ab794990, type: 3}
   getSpeed: 5
   carrotStop: 0
+--- !u!136 &7429924340901554981
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093304473690038686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3050965353027494276
 GameObject:
   m_ObjectHideFlags: 0

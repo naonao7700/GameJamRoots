@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     AudioClip pull;
 
+    RuntimeAnimatorController nomalContoroller;
+
+    RuntimeAnimatorController goldContoroller;
 
 
     // Start is called before the first frame update
@@ -56,6 +59,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         harvestSprite.enabled = false;
         source = GetComponent<AudioSource>();
+        Initialize();
     }
 
     // Update is called once per frame
@@ -63,6 +67,7 @@ public class Player : MonoBehaviour
     {
         if(gameManager.IsOutGame)
         {
+            
             return;
         }
         if (!GoldenManager.Instance.goldenFlag )
@@ -279,12 +284,13 @@ public class Player : MonoBehaviour
         if( carrot.CheckGold())
         {
             GoldenManager.Instance.StartGoldenTime();
+            animator.runtimeAnimatorController = goldContoroller;
             animator.SetFloat("animSpeed",2);
         }
 
 
 
-        Destroy(carrot.gameObject);
+        carrot.GetCarrot();
         harvestSprite.enabled = false;
         source.PlayOneShot(pull);
         yield return new WaitForSeconds(harvestTime);
@@ -296,7 +302,16 @@ public class Player : MonoBehaviour
         yield break;
     }
 
+    public void Initialize()
+    {
+        transform.localPosition = Vector3.zero;
+        animator.Play("BackStay");
+    }
 
+    public void GameEnd()
+    {
+        source.Pause();
+    }
 
 
 }

@@ -38,7 +38,7 @@ public class Carrot : MonoBehaviour
     /// <summary>
     /// 人参を回収した時
     /// </summary>
-    void GetCarrot()
+    public void GetCarrot()
 	{
         //人参の座標
         Vector3 carrotPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);

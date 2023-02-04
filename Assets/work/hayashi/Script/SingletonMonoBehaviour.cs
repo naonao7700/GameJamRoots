@@ -13,7 +13,8 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
         {
             Type type = typeof(T);
             instance = (T)FindObjectOfType(type);
-            if(instance == null)
+            
+            if (instance == null)
             {
                 Debug.LogError("インスタンスが存在しません");
             }

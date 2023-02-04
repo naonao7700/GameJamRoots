@@ -227,6 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207361227}
+  - component: {fileID: 207361228}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -250,6 +251,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &207361228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207361226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5d8f4d98a386141ba66c7c00f62a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageSizeMin: -4
+  stageSizeMax: 5
 --- !u!1 &226409462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1045b9ef6f2db4db11dd9eebd8acf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: 1
+  gameTime: 40
   score: {fileID: 148041024}
   text: {fileID: 226409463}
   readyTime: 1

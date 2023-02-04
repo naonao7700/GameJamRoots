@@ -982,8 +982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5d8f4d98a386141ba66c7c00f62a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageSizeMin: -4
-  stageSizeMax: 4
+  stageSizeMin: {x: -4, y: -4.8}
+  stageSizeMax: {x: 4, y: 3}
 --- !u!1 &226409462
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,11 @@ public class Carrot : MonoBehaviour
         return state;
 	}
 
+    /// <summary>
+    /// ê¨í∑Çé~ÇﬂÇÈ
+    /// </summary>
+    public bool carrotStop;  
+    
 	float time;
     
     void Start()
@@ -31,14 +36,19 @@ public class Carrot : MonoBehaviour
 
     void Update()
     {
-        time += Time.deltaTime;
+        //ÉvÉåÉCÉÑÅ[Ç™âÒé˚ÇµÇƒÇ¢Ç»Ç¢éû
+        if (carrotStop == false)            
+		{
+            time += Time.deltaTime;
+        }
 
         if (time >= 3.5f)
-            Destroy(gameObject);
+            Destroy(gameObject);            //îjâÛ
 
         if (time >= 3.0f)
 		{
             state = CarrotState.Exit;
+            //ñÑÇ‹Ç¡ÇƒÇ¢Ç≠
             transform.position = transform.position - transform.up * 1 * Time.deltaTime;
         }
         else if (time >= 2.5f)
@@ -65,5 +75,4 @@ public class Carrot : MonoBehaviour
             transform.position = transform.position + transform.up * 1 * Time.deltaTime  ;
         }
     }
-
 }

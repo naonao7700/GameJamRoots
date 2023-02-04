@@ -256,7 +256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: abc71927ced7d664995f3f7564b18736, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c384eaa34c57524f97f7ff61d71d1fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -320,6 +320,8 @@ MonoBehaviour:
   goldMoveSpeed: 6
   harvestTime: 0.5
   harvestSprite: {fileID: 3601114780479767602}
+  nomalContoroller: {fileID: 9100000, guid: 8e50ffcdf55bf1d4fa864e2d64f5ba1b, type: 2}
+  goldContoroller: {fileID: 9100000, guid: e9256fc60d60e1c4f96ab4367e37636c, type: 2}
   move: {fileID: 8300000, guid: 104ec9962362fac40badaf04d892af7f, type: 3}
   carrotGrab: {fileID: 8300000, guid: 608b8cf316e733540ae626ee49d13ebf, type: 3}
   pull: {fileID: 8300000, guid: e894ae2821a06ad4581fe7e17ad9c017, type: 3}
@@ -365,7 +367,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 8e50ffcdf55bf1d4fa864e2d64f5ba1b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1

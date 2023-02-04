@@ -31,6 +31,19 @@ public class Player : MonoBehaviour
 
     Vector3 dir;
 
+
+    AudioSource source;
+
+    [Header("SE")]
+    [SerializeField]
+    AudioClip move;
+    [SerializeField]
+    AudioClip carrotGrab;
+    [SerializeField]
+    AudioClip pull;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +52,7 @@ public class Player : MonoBehaviour
         playerSize = transform.lossyScale.x / 2;
         animator = GetComponent<Animator>();
         harvestSprite.enabled = false;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -75,10 +89,18 @@ public class Player : MonoBehaviour
         }
         moveAnimation(v);
         v.Normalize();
+        if (v.x + v.z != 0 && !source.isPlaying)
+        {
+            source.Play();
+        }
+        else if (v.x + v.z == 0)
+        {
+            source.Pause();
+        }
 
         v *= Time.deltaTime * moveSpeed;
 
-        
+
         if (stageManager.GetStageSizeMin > transform.position.x + v.x - playerSize || transform.position.x + v.x + playerSize > stageManager.GetStageSizeMax)
         {
             v.x = 0;
@@ -88,18 +110,25 @@ public class Player : MonoBehaviour
             v.z = 0;
         }
 
-        
-        dir = v;
-        
 
-        
+
+        dir = v;
+
+
+
+        if (v.x * v.y == 0)
+        {
+            dir = v;
+        }
+
+
         transform.Translate(v);
     }
 
     void moveAnimation(Vector3 v)
     {
-       
-        if(isHarvest)
+
+        if (isHarvest)
         {
             return;
         }
@@ -127,12 +156,12 @@ public class Player : MonoBehaviour
             animator.Play("LeftMove");
             return;
         }
-        if (v.x * v.z == 0 )
+        if (v.x * v.z == 0)
         {
             animator.SetBool("isMove", false);
             return;
         }
-        
+
 
 
     }
@@ -144,18 +173,17 @@ public class Player : MonoBehaviour
             //UI•\Ž¦
             if (!harvestSprite.enabled)
             {
-                
+
                 harvestSprite.enabled = true;
             }
             if (Input.GetKey(KeyCode.Return) && !isHarvest)
             {
-                
-                StartCoroutine(HarvestCarrots(other.gameObject));
+
+
+                StartCoroutine(HarvestCarrots(other.gameObject.GetComponent<Carrot>()));
+
             }
-<<<<<<< Updated upstream
-            StartCoroutine(HarvestCarrots());
-=======
->>>>>>> Stashed changes
+
         }
 
     }
@@ -169,56 +197,60 @@ public class Player : MonoBehaviour
     }
 
     //ŽûŠn
-<<<<<<< Updated upstream
-    IEnumerator HarvestCarrots()
-    {
-        if (Input.GetKey(KeyCode.Return) && !isHarvest )
-        {
-            isHarvest = true;
-            //ƒXƒRƒA‰ÁŽZ
-            GameManager.Instance.AddScore(10);
-            yield return new WaitForSeconds(1f);
-            isHarvest = false;
-        }
-=======
-    IEnumerator HarvestCarrots(GameObject carrot)
+
+    IEnumerator HarvestCarrots(Carrot carrot)
     {
 
         isHarvest = true;
-
-       
+        source.PlayOneShot(carrotGrab);
 
         yield return null;
+        if (carrot == null)
+        {
+            yield break;
+        }
 
+        switch (carrot.GetState())
+        {
+            case Carrot.CarrotState.Enter:
+            case Carrot.CarrotState.Exit:
+                break;
 
-        /*switch (CarrotState)
-         {
-             case state1:
+            case Carrot.CarrotState.Active00:
+                carrot.carrotStop = true;
                 for (int n = 0; n < 2; n++)
                 {
                     yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
                     yield return null;
                 }
-                gameManager.AddScore(30);;
+                gameManager.AddScore(30); ;
                 break;
-             case state2:
-                 for (int n = 0; n < 1; n++)
-                 {
-                     yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
-                     yield return null;
-                 }   
-                gameManager.AddScore(20);;
-                 break;
-            case state3:
-                gameManager.AddScore(10);;
-                 break;
-                
-         }*/
+            case Carrot.CarrotState.Active01:
+                carrot.carrotStop = true;
+                for (int n = 0; n < 1; n++)
+                {
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+                    yield return null;
+                }
+                gameManager.AddScore(20); ;
+                break;
+            case Carrot.CarrotState.Active02:
+                carrot.carrotStop = true;
+                gameManager.AddScore(10); ;
+                break;
+        }
 
         if (dir.z > 0)
         {
             animator.Play("ForwardHarvest");
+
+
         }
+        if (dir.z > 0)
+        {
+
+            animator.Play("ForwardHarvest");
+            }
         else if (dir.z < 0)
         {
 
@@ -233,16 +265,21 @@ public class Player : MonoBehaviour
         }
         else if (dir.x < 0)
         {
+
             animator.Play("LeftHarvest");
         }
 
         Destroy(carrot);
-        harvestSprite.enabled = false;
-        yield return new WaitForSeconds(harvestTime);
-        isHarvest = false;
-        
 
->>>>>>> Stashed changes
+
+        harvestSprite.enabled = false;
+        source.PlayOneShot(pull);
+        yield return new WaitForSeconds(harvestTime);
+
+        isHarvest = false;
+
+
+
         yield break;
     }
 

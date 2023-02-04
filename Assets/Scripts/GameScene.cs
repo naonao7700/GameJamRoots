@@ -70,6 +70,12 @@ namespace Scenes
             {
                 OnPhaseChange(PhaseID.Finish);
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+
         }
 
         protected override void OnFinish()

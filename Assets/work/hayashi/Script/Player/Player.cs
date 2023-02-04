@@ -269,6 +269,12 @@ public class Player : MonoBehaviour
             animator.Play("LeftHarvest");
         }
 
+        //ƒS[ƒ‹ƒfƒ“‚É‚ñ‚¶‚ñæ“¾‚µ‚½
+        if( carrot.CheckGold())
+        {
+            GoldenManager.Instance.StartGoldenTime();
+        }
+
         Destroy(carrot.gameObject);
 
 

@@ -7,14 +7,23 @@ namespace Scenes
 {
     public class ResultScene : BaseScene
     {
+        [SerializeField] private float fadeTime;
         [SerializeField] private Image backGround;
+        [SerializeField] private GameObject uiObject;
+        [SerializeField] private Ranking ranking;
+        [SerializeField] private Score score;
+
 
         protected override void OnEnter()
         {
-            waitTimer.Reset();
+            uiObject.SetActive(false);
+            waitTimer.Reset( fadeTime );
             var color = backGround.color;
             color.a = 0.0f;
             backGround.color = color;
+
+            score.SetText(GameManager.Instance.GetScore());
+            ranking.CountRanking(GameManager.Instance.GetScore());
         }
 
         protected override void EnterUpdate()
@@ -23,17 +32,21 @@ namespace Scenes
             var color = backGround.color;
             color.a = Mathf.Lerp(0.0f, 0.5f, t);
             backGround.color = color;
-        }
-
-        protected override void InitUpdate()
-        {
-            base.InitUpdate();
-            OnPhaseChange(PhaseID.Update);
+            if( waitTimer.IsEnd() )
+            {
+                uiObject.SetActive(true);
+                OnPhaseChange(PhaseID.Update);
+            }
         }
 
         protected override void MainUpdate()
         {
             if( Input.GetKeyDown(KeyCode.Space))
+            {
+                nextSceneID = SceneID.Game;
+                OnPhaseChange(PhaseID.Exit);
+            }
+            else if( Input.GetKeyDown(KeyCode.Escape))
             {
                 nextSceneID = SceneID.Title;
                 OnPhaseChange(PhaseID.Exit);

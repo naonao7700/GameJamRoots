@@ -11,9 +11,19 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //シーンの参照(不変)
     [SerializeField] private BaseScene[] scenes;
 
+    private AudioSource audioSource;
+
+    public void PlayBGM( AudioClip clip )
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
     //初期化処理
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         //シーンを一旦全て非表示にする
         for( int i=0; i<scenes.Length; ++i )
         {

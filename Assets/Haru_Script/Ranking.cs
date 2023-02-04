@@ -37,9 +37,9 @@ public class Ranking : MonoBehaviour
 
     void Update()
     {
-        rank1.text = "1st: " + rank[0];
-        rank2.text = "2nd: " + rank[1];
-        rank3.text = "3rd: " + rank[2];
+        rank1.text = /*"1st: " +*/ rank[0].ToString();
+        rank2.text = /*"2nd: " +*/ rank[1].ToString();
+        rank3.text = /*"3rd: " +*/ rank[2].ToString();
 
     }
 }

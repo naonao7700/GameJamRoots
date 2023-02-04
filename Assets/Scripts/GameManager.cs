@@ -8,7 +8,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         get
         {
-            return true;
+            return false;
             //return gameState != GameState.Game;
         }
     }

@@ -27,13 +27,15 @@ public class Carrot : MonoBehaviour
         return state;
 	}
 
+    public bool GoldFlag;
+
     /// <summary>
     /// 金人参かどうかの判定
     /// </summary>
     /// <returns></returns>
     public bool CheckGold()
 	{
-        return CarrotManager.Gold;
+        return GoldFlag;
 	}
     /// <summary>
     /// 人参を回収した時
@@ -92,7 +94,8 @@ public class Carrot : MonoBehaviour
 
         
         //金人参のとき
-        if(CarrotManager.Gold == true)
+        //if(CarrotManager.Gold == true)
+        if( GoldFlag )
 		{
             state = CarrotState.Active00;
             if (time <= 0.5f)
@@ -105,7 +108,8 @@ public class Carrot : MonoBehaviour
 
         
         //金人参じゃないとき
-        if (CarrotManager.Gold == false)
+        if( GoldFlag )
+        //if (CarrotManager.Gold == false)
         {
         
 

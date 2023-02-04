@@ -17,7 +17,7 @@ public class CarrotManager : MonoBehaviour
     #endregion
     float time1;
     float time2;
-    static public bool Gold;
+    //static public bool Gold;
 
     void Start()
     {
@@ -51,7 +51,11 @@ public class CarrotManager : MonoBehaviour
 			}
             else
 			{
-                Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
+                for (int i = 0; i < 3; ++i)
+                {
+                    pos = new Vector3(Random.Range(min, max), 0, Random.Range(min, max));
+                    Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
+                }
             }
             time1 = 0;
         }

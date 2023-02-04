@@ -32,6 +32,11 @@ namespace Scenes
                 nextSceneID = SceneID.Game;
                 OnPhaseChange(PhaseID.Exit);
             }
+
+            if( Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
         }
 
     }

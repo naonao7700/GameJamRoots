@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 2547215430132562133}
   - component: {fileID: 32014838187147568}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CarrotCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -269,7 +269,7 @@ public class Player : MonoBehaviour
             animator.Play("LeftHarvest");
         }
 
-        Destroy(carrot);
+        Destroy(carrot.gameObject);
 
 
         harvestSprite.enabled = false;

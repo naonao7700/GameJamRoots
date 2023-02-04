@@ -214,6 +214,9 @@ MonoBehaviour:
   Carrot1: {fileID: 3050965353027494276}
   Carrot2: {fileID: 256351008464064243}
   Carrot3: {fileID: 1317182517603866097}
+  CarrotEffect: {fileID: 727128168092576257, guid: c3f38a76d9a86a54385e0db1d17f052b, type: 3}
+  GoldCarrotEffect: {fileID: 6347538573789699511, guid: 56a2c10422493a043a39ef53ab794990, type: 3}
+  getSpeed: 5
   carrotStop: 0
 --- !u!136 &7429924340901554981
 CapsuleCollider:

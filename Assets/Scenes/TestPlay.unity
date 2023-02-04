@@ -637,6 +637,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrot
       objectReference: {fileID: 0}
+    - target: {fileID: 2093304473690038687, guid: 63bba4ac69339a74c94db1327f7fb958, type: 3}
+      propertyPath: getSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2093304473690038688, guid: 63bba4ac69339a74c94db1327f7fb958, type: 3}
       propertyPath: m_RootOrder
       value: 6

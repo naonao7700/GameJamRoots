@@ -18,6 +18,7 @@ public class Mole : SingletonMonoBehaviour<Mole>
     [SerializeField] private bool textFlag;
 
     private int carrotCount;
+    [SerializeField] private int comboNum;
 
     public void Init()
     {
@@ -39,9 +40,10 @@ public class Mole : SingletonMonoBehaviour<Mole>
         if( state == Carrot.CarrotState.Active00 )
         {
             carrotCount++;
-            if( carrotCount > 1 )
+            if( carrotCount >= comboNum )
             {
                 OnCombo();
+                carrotCount = 0;
             }
         }
         else

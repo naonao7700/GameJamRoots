@@ -17,6 +17,13 @@ namespace Scenes
         [SerializeField] private Vector3 hidePos2;
         [SerializeField] private Vector3 viewPos2;
 
+        protected override void OnEnter()
+        {
+            base.OnEnter();
+            logo.rectTransform.anchoredPosition = hidePos;
+            start.anchoredPosition = hidePos2;
+        }
+
         protected override void OnInit()
         {
             base.OnInit();

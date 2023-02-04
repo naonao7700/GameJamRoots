@@ -33,6 +33,7 @@ namespace Scenes
             text.enabled = false;
             GoldenManager.Instance.ResetGoldenTime();
             player.Initialize();
+            Mole.Instance.Init();
 
         }
 

@@ -251,6 +251,7 @@ public class Player : MonoBehaviour
 
             animator.Play("LeftHarvestEnter");
         }
+        Mole.Instance.SetCarrotState(carrot.GetState());
         switch (carrot.GetState())
         {
             case Carrot.CarrotState.Enter:

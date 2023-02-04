@@ -64,7 +64,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //ƒXƒRƒA‚ğ‰ÁZ‚·‚éˆ—
     public void AddScore(int value )
     {
-        Mole.Instance.SetCarrotState(Carrot.CarrotState.Active00);
         score += value;
         if( score < 0 )
         {

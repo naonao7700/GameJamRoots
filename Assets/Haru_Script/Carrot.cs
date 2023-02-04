@@ -5,6 +5,8 @@ using UnityEngine;
 public class Carrot : MonoBehaviour
 {
     float time;
+    [SerializeField] private float destroyTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,7 @@ public class Carrot : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if(time >= 1.0f)
+        if(time >= destroyTime)
 		{
             Destroy(gameObject);
 		}

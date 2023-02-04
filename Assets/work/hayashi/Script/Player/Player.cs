@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
             { 
                 harvestText.enabled = true;
             }
-            StartCoroutine(HarvestCarrots());
+            StartCoroutine(HarvestCarrots( other.gameObject ));
         }
 
     }
@@ -111,14 +111,15 @@ public class Player : MonoBehaviour
     }
 
     //é˚än
-    IEnumerator HarvestCarrots()
+    IEnumerator HarvestCarrots( GameObject carrot )
     {
         if (Input.GetKey(KeyCode.Return) && !isHarvest )
         {
             isHarvest = true;
             //ÉXÉRÉAâ¡éZ
             GameManager.Instance.AddScore(10);
-            yield return new WaitForSeconds(1f);
+            GameObject.Destroy(carrot);
+            yield return new WaitForSeconds(harvestTime);
             isHarvest = false;
         }
         yield break;

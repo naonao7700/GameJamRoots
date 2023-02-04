@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  harvestTime: 1
+  harvestTime: 0.5
   harvestText: {fileID: 1737978560155071091}
   stegeSizeMin: -4
   stegeSizeMax: 5

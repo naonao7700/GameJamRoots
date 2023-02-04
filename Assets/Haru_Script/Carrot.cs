@@ -7,7 +7,11 @@ public class Carrot : MonoBehaviour
     [SerializeField] GameObject Carrot1;
     [SerializeField] GameObject Carrot2;
     [SerializeField] GameObject Carrot3;
+    [SerializeField] GameObject CarrotEffect;
+    [SerializeField] GameObject GoldCarrotEffect;
 
+
+    public float getSpeed;
 
 	public enum CarrotState
 	{ 
@@ -23,11 +27,35 @@ public class Carrot : MonoBehaviour
         return state;
 	}
 
-    [SerializeField] private bool GoldFlag;
-
+    /// <summary>
+    /// 金人参かどうかの判定
+    /// </summary>
+    /// <returns></returns>
     public bool CheckGold()
 	{
-        return GoldFlag;
+        return CarrotManager.Gold;
+	}
+    /// <summary>
+    /// 人参を回収した時
+    /// </summary>
+    void GetCarrot()
+	{
+        //人参の座標
+        Vector3 carrotPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //上方向へ移動
+        transform.position = transform.position + transform.up * getSpeed * Time.deltaTime;
+        
+        //金人参の時
+        if (CheckGold() == true)
+        {
+            Instantiate(GoldCarrotEffect, carrotPos, Quaternion.Euler(0, 0, 0));
+        }
+        //普通の人参の時
+        else
+        {
+            Instantiate(CarrotEffect, carrotPos, Quaternion.Euler(0, 0, 0));
+        }
+        
 	}
 
     /// <summary>
@@ -37,6 +65,7 @@ public class Carrot : MonoBehaviour
     
 	float time;
     
+
     void Start()
     {
         time = 0;
@@ -44,6 +73,7 @@ public class Carrot : MonoBehaviour
 
     void Update()
     {
+
         //プレイヤーが回収していない時
         if (carrotStop == false)            
 		{
@@ -62,7 +92,7 @@ public class Carrot : MonoBehaviour
 
         
         //金人参のとき
-        if( GoldFlag == true)
+        if(CarrotManager.Gold == true)
 		{
             state = CarrotState.Active00;
             if (time <= 0.5f)
@@ -71,7 +101,11 @@ public class Carrot : MonoBehaviour
                 transform.position = transform.position + transform.up * 1 * Time.deltaTime / 2;
             }
         }
-        else
+        
+
+        
+        //金人参じゃないとき
+        if (CarrotManager.Gold == false)
         {
         
 

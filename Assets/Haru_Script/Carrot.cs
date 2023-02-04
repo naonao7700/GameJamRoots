@@ -23,9 +23,11 @@ public class Carrot : MonoBehaviour
         return state;
 	}
 
+    [SerializeField] private bool GoldFlag;
+
     public bool CheckGold()
 	{
-        return CarrotManager.Gold;
+        return GoldFlag;
 	}
 
     /// <summary>
@@ -60,7 +62,7 @@ public class Carrot : MonoBehaviour
 
         
         //金人参のとき
-        if(CarrotManager.Gold == true)
+        if( GoldFlag == true)
 		{
             state = CarrotState.Active00;
             if (time <= 0.5f)
@@ -69,11 +71,7 @@ public class Carrot : MonoBehaviour
                 transform.position = transform.position + transform.up * 1 * Time.deltaTime / 2;
             }
         }
-        
-
-        
-        //金人参じゃないとき
-        if (CarrotManager.Gold == false)
+        else
         {
         
 

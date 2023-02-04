@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GoldenBar : MonoBehaviour
 {
+    [SerializeField] private Image baseImage;
     [SerializeField] private Image image;
     [SerializeField] private Vector3 viewPos;   //表示座標
     [SerializeField] private Vector3 hidePos;   //非表示座標
@@ -47,6 +48,13 @@ public class GoldenBar : MonoBehaviour
         }
     }
 
+    public void ResetBar()
+    {
+        rate = 0.0f;
+        state = State.Hide;
+        baseImage.rectTransform.anchoredPosition = hidePos;
+    }
+
     private void Update()
     {
         if( state == State.Enter )
@@ -61,7 +69,7 @@ public class GoldenBar : MonoBehaviour
             }
             var t = rate;
             t = t * t * (3.0f - 2.0f * t);
-            image.rectTransform.anchoredPosition = Vector3.Lerp(hidePos, viewPos, t);
+            baseImage.rectTransform.anchoredPosition = Vector3.Lerp(hidePos, viewPos, t);
         }
         else if( state == State.Exit )
         {
@@ -75,7 +83,7 @@ public class GoldenBar : MonoBehaviour
             }
             var t = 1.0f - rate;
             t = t * t;
-            image.rectTransform.anchoredPosition = Vector3.Lerp(viewPos, hidePos, t);
+            baseImage.rectTransform.anchoredPosition = Vector3.Lerp(viewPos, hidePos, t);
         }
     }
 

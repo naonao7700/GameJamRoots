@@ -214,6 +214,7 @@ MonoBehaviour:
   Carrot1: {fileID: 3050965353027494276}
   Carrot2: {fileID: 256351008464064243}
   Carrot3: {fileID: 1317182517603866097}
+  GoldFlag: 1
   carrotStop: 0
 --- !u!136 &7429924340901554981
 CapsuleCollider:

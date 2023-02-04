@@ -30,6 +30,7 @@ namespace Scenes
             GameTimer.Instance.SetTime(gameTime);
             nextSceneID = SceneID.Result;
             text.enabled = false;
+            GoldenManager.Instance.ResetGoldenTime();
         }
 
         protected override void OnInit()
@@ -77,6 +78,7 @@ namespace Scenes
             text.text = "Finish!";
             waitTimer.Reset(finishTime);
             GameManager.Instance.PlaySE(timeUpSE);
+            GoldenManager.Instance.EndGoldenTime();
         }
 
         protected override void FinishUpdate()

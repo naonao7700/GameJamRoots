@@ -37,6 +37,12 @@ public class Player : MonoBehaviour
 
     AudioSource source;
 
+    [SerializeField]
+    RuntimeAnimatorController nomalContoroller;
+
+    [SerializeField]
+    RuntimeAnimatorController goldContoroller;
+
     [Header("SE")]
     [SerializeField]
     AudioClip move;
@@ -45,10 +51,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     AudioClip pull;
 
-    RuntimeAnimatorController nomalContoroller;
 
-    RuntimeAnimatorController goldContoroller;
-
+    bool isAnimGold;
 
     // Start is called before the first frame update
     void Start()
@@ -65,15 +69,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.IsOutGame)
+        if(isAnimGold && !GoldenManager.Instance.goldenFlag)
         {
-            
+            animator.runtimeAnimatorController = nomalContoroller;
+        }
+
+        if (gameManager.IsOutGame)
+        {
+
             return;
         }
-        if (!GoldenManager.Instance.goldenFlag )
-        {
-            animator.SetFloat("animSpeed", 1);
-        }
+        
         Move();
     }
 
@@ -192,7 +198,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Carrot") && !gameManager.IsOutGame)
         {
-            
+
             if (Input.GetKey(KeyCode.Space) && !isHarvest)
             {
 
@@ -205,7 +211,7 @@ public class Player : MonoBehaviour
 
     }
 
-  
+
 
     //ŽûŠn
 
@@ -213,7 +219,7 @@ public class Player : MonoBehaviour
     {
 
         isHarvest = true;
-        
+
         source.PlayOneShot(carrotGrab);
 
         yield return null;
@@ -222,24 +228,25 @@ public class Player : MonoBehaviour
             yield break;
         }
 
-        if (dir.z > 0)
+        
+        if (dir.z > 0 && !GoldenManager.Instance.goldenFlag)
         {
 
             animator.Play("ForwardHarvestEnter");
         }
-        else if (dir.z < 0)
+        else if (dir.z < 0 && !GoldenManager.Instance.goldenFlag)
         {
 
             animator.Play("BackHarvestEnter");
 
         }
-        else if (dir.x > 0)
+        else if (dir.x > 0 && !GoldenManager.Instance.goldenFlag)
         {
-
+            
             animator.Play("RightHarvestEnter");
 
         }
-        else if (dir.x < 0)
+        else if (dir.x < 0 && !GoldenManager.Instance.goldenFlag)
         {
 
             animator.Play("LeftHarvestEnter");
@@ -277,20 +284,46 @@ public class Player : MonoBehaviour
                 break;
         }
 
-        animator.SetTrigger("isHarvestEnd");
-        
-
-        //ƒS[ƒ‹ƒfƒ“‚É‚ñ‚¶‚ñŽæ“¾‚µ‚½Žž
-        if( carrot.CheckGold())
+        if(! GoldenManager.Instance.goldenFlag)
         {
-            GoldenManager.Instance.StartGoldenTime();
-            animator.runtimeAnimatorController = goldContoroller;
-            animator.SetFloat("animSpeed",2);
+            animator.SetTrigger("isHarvestEnd");
+        }
+        else if (dir.z > 0 )
+        {
+
+            animator.Play("ForwardHarvestExit");
+        }
+        else if (dir.z < 0)
+        {
+
+            animator.Play("BackHarvestExit");
+
+        }
+        else if (dir.x > 0)
+        {
+
+            animator.Play("RightHarvestExit");
+
+        }
+        else if (dir.x < 0)
+        {
+
+            animator.Play("LeftHarvestExit");
         }
 
 
+        //ƒS[ƒ‹ƒfƒ“‚É‚ñ‚¶‚ñŽæ“¾‚µ‚½Žž
+        if (carrot.CheckGold())
+        {
+            isAnimGold = true;
+            GoldenManager.Instance.StartGoldenTime();
+            animator.runtimeAnimatorController = goldContoroller;
+            animator.SetFloat("animSpeed", 2);
+        }
 
         carrot.GetCarrot();
+
+
         harvestSprite.enabled = false;
         source.PlayOneShot(pull);
         yield return new WaitForSeconds(harvestTime);

@@ -659,9 +659,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8885145004688771369, guid: 9887f12b4e5381c4fa5e719a405b08e8, type: 3}
+      propertyPath: nomalContoroller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8e50ffcdf55bf1d4fa864e2d64f5ba1b, type: 2}
     - target: {fileID: 8885145004688771372, guid: 9887f12b4e5381c4fa5e719a405b08e8, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885145004688771374, guid: 9887f12b4e5381c4fa5e719a405b08e8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9887f12b4e5381c4fa5e719a405b08e8, type: 3}
@@ -2445,6 +2453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 90
+  player: {fileID: 1600520117}
   startSE: {fileID: 8300000, guid: 5198bb0a04870aa47be395e162a56880, type: 3}
   timeUpSE: {fileID: 8300000, guid: c54274b8e5bc6b240abeefdc44c3df79, type: 3}
   score: {fileID: 1136076190}
@@ -3360,6 +3369,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591937358}
   m_CullTransparentMesh: 1
+--- !u!114 &1600520117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8885145004688771369, guid: 9887f12b4e5381c4fa5e719a405b08e8, type: 3}
+  m_PrefabInstance: {fileID: 220549995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de90183ac4d0cd6468014d10eb254ef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1603755114
 GameObject:
   m_ObjectHideFlags: 0

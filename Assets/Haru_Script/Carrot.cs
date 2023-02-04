@@ -27,8 +27,12 @@ public class Carrot : MonoBehaviour
         return state;
 	}
 
-    public bool GoldFlag;
+    [SerializeField]
+    bool GoldFlag;
 
+    CapsuleCollider capsule;
+
+    bool isAcquired = false;
     /// <summary>
     /// 金人参かどうかの判定
     /// </summary>
@@ -42,10 +46,11 @@ public class Carrot : MonoBehaviour
     /// </summary>
     public void GetCarrot()
 	{
+        capsule.enabled = false;
+        isAcquired = true;
         //人参の座標
         Vector3 carrotPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        //上方向へ移動
-        transform.position = transform.position + transform.up * getSpeed * Time.deltaTime;
+        
         
         //金人参の時
         if (CheckGold() == true)
@@ -71,10 +76,15 @@ public class Carrot : MonoBehaviour
     void Start()
     {
         time = 0;
+        capsule = GetComponent<CapsuleCollider>();
     }
 
     void Update()
     {
+        if(isAcquired)
+        {
+            transform.Translate(transform.up * Time.deltaTime * getSpeed);
+        }
 
         //プレイヤーが回収していない時
         if (carrotStop == false)            

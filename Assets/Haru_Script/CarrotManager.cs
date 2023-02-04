@@ -30,13 +30,13 @@ public class CarrotManager : MonoBehaviour
             Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
             time1 = 0;
         }
-        /*
+        
         if (time2 >= wave2)
         {
             Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
             time2 = 0;
         }
-        */
+        
 
     }
 }

@@ -17,7 +17,7 @@ public class CarrotManager : MonoBehaviour
     #endregion
     float time1;
     float time2;
-    //static public bool Gold;
+    static public bool Gold;
 
     void Start()
     {

@@ -5,26 +5,33 @@ using UnityEngine.UI;
 
 public class GameTimer : SingletonMonoBehaviour<GameTimer>
 {
-    [SerializeField] private Text text;
+    [SerializeField] private Image image;
 
     public float time;
+    public float maxTime;
 
     public void SetTime( float time )
     {
         this.time = time;
-        SetText();
+        maxTime = time;
+        SetImage();
     }
 
     public void DoUpdate( float deltaTime )
     {
         time -= deltaTime;
         if (time < 0.0f) time = 0.0f;
-        SetText();
+        SetImage();
     }
 
-    public void SetText( )
+    public void SetImage( )
     {
-        text.text = "Time:" + time.ToString();
+        float rate = 0;
+        if( maxTime != 0.0f )
+        {
+            rate = time / maxTime;
+        }
+        image.fillAmount = rate;
     }
 
     public bool IsEnd()

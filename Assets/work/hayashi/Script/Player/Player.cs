@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.Animations;
 
 public class Player : MonoBehaviour
 {
@@ -15,13 +15,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     float harvestTime;
     [SerializeField]
-    Text harvestText;
+    SpriteRenderer harvestSprite;
 
-
-    [SerializeField]
-    float stegeSizeMin;
-    [SerializeField]
-    float stegeSizeMax;
+    Animator animator;
 
     //プレイヤーの大きさ
     float playerSize;
@@ -31,17 +27,24 @@ public class Player : MonoBehaviour
 
     GameManager gameManager;
 
+    StageManager stageManager;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.Instance;
+        stageManager = StageManager.Instance;
         playerSize = transform.lossyScale.x / 2;
+        animator = GetComponent<Animator>();
+        harvestSprite.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         Move();
     }
 
@@ -70,22 +73,59 @@ public class Player : MonoBehaviour
         {
             v += Vector3.left;
         }
-
+        moveAnimation(v);
         v.Normalize();
 
         v *= Time.deltaTime * moveSpeed;
 
 
-        if (stegeSizeMin > transform.position.x + v.x - playerSize || transform.position.x + v.x + playerSize > stegeSizeMax)
+        if (stageManager.GetStageSizeMin > transform.position.x + v.x - playerSize || transform.position.x + v.x + playerSize > stageManager.GetStageSizeMax)
         {
             v.x = 0;
         }
-        if (stegeSizeMin > transform.position.z + v.z - playerSize || transform.position.z + v.z + playerSize > stegeSizeMax)
+        if (stageManager.GetStageSizeMin > transform.position.z + v.z - playerSize || transform.position.z + v.z + playerSize > stageManager.GetStageSizeMax)
         {
             v.z = 0;
         }
 
+
         transform.Translate(v);
+    }
+
+    void moveAnimation(Vector3 v)
+    {
+
+        if (v.z > 0)
+        {
+            animator.SetBool("isMove", true);
+            animator.Play("ForwardMove");
+            return;
+        }
+        if (v.z < 0)
+        {
+            animator.SetBool("isMove", true);
+            animator.Play("BackMove");
+            return;
+        }
+        if (v.x > 0)
+        {
+            animator.SetBool("isMove", true);
+            animator.Play("RightMove");
+            return;
+        }
+        if (v.x < 0)
+        {
+            animator.SetBool("isMove", true);
+            animator.Play("LeftMove");
+            return;
+        }
+        if (v.x * v.z == 0 || isHarvest)
+        {
+            animator.SetBool("isMove", false);
+            return;
+        }
+
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -93,39 +133,86 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Carrot") && !gameManager.IsOutGame)
         {
             //UI表示
-            if(!harvestText.enabled)
-            { 
-                harvestText.enabled = true;
+            if (!harvestSprite.enabled)
+            {
+
+                harvestSprite.enabled = true;
             }
-            StartCoroutine(HarvestCarrots( other.gameObject ));
+            if (Input.GetKey(KeyCode.Return) && !isHarvest)
+            {
+                StartCoroutine(HarvestCarrots(other.gameObject));
+            }
+<<<<<<< Updated upstream
+            StartCoroutine(HarvestCarrots());
+=======
+>>>>>>> Stashed changes
         }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Carrot"))
+        if (harvestSprite.enabled)
         {
-            harvestText.enabled = false;
+            harvestSprite.enabled = false;
         }
     }
 
     //収穫
-    IEnumerator HarvestCarrots( GameObject carrot )
+<<<<<<< Updated upstream
+    IEnumerator HarvestCarrots()
     {
         if (Input.GetKey(KeyCode.Return) && !isHarvest )
         {
             isHarvest = true;
             //スコア加算
             GameManager.Instance.AddScore(10);
-            GameObject.Destroy(carrot);
-            yield return new WaitForSeconds(harvestTime);
+            yield return new WaitForSeconds(1f);
             isHarvest = false;
         }
+=======
+    IEnumerator HarvestCarrots(GameObject carrot)
+    {
+
+        isHarvest = true;
+
+        yield return null;
+
+
+        /*switch (CarrotState)
+         {
+             case state1:
+                for (int n = 0; n < 2; n++)
+                {
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+                    yield return null;
+                }
+                gameManager.AddScore(30);;
+                break;
+             case state2:
+                 for (int n = 0; n < 1; n++)
+                 {
+                     yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+                     yield return null;
+                 }   
+                gameManager.AddScore(20);;
+                 break;
+            case state3:
+                gameManager.AddScore(10);;
+                 break;
+                
+         }*/
+
+        Destroy(carrot);
+        harvestSprite.enabled = false;
+        yield return new WaitForSeconds(harvestTime);
+        isHarvest = false;
+
+>>>>>>> Stashed changes
         yield break;
     }
 
-    
+
 
 
 }

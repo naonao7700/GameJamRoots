@@ -129,11 +129,11 @@ public class Player : MonoBehaviour
         }
 
 
-        if (stageManager.GetStageSizeMin > transform.position.x + v.x - playerSize || transform.position.x + v.x + playerSize > stageManager.GetStageSizeMax)
+        if (stageManager.GetStageSizeMin.x > transform.position.x + v.x - playerSize || transform.position.x + v.x + playerSize > stageManager.GetStageSizeMax.x)
         {
             v.x = 0;
         }
-        if (stageManager.GetStageSizeMin > transform.position.z + v.z - playerSize || transform.position.z + v.z + playerSize > stageManager.GetStageSizeMax)
+        if (stageManager.GetStageSizeMin.y > transform.position.z + v.z - playerSize || transform.position.z + v.z + playerSize > stageManager.GetStageSizeMax.y)
         {
             v.z = 0;
         }

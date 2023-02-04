@@ -5,13 +5,13 @@ using UnityEngine;
 public class StageManager : SingletonMonoBehaviour<StageManager>
 {
     [SerializeField]
-    float stageSizeMin;
-    public float GetStageSizeMin { get => stageSizeMin; }
+    Vector2 stageSizeMin;
+    public Vector2 GetStageSizeMin { get => stageSizeMin; }
 
 
     [SerializeField]
-    float stageSizeMax;
-    public float GetStageSizeMax { get => stageSizeMax; }
+    Vector2 stageSizeMax;
+    public Vector2 GetStageSizeMax { get => stageSizeMax; }
 
 
 

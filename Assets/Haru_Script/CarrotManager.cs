@@ -36,10 +36,10 @@ public class CarrotManager : MonoBehaviour
         
         time1 += Time.deltaTime;
         time2 += Time.deltaTime;
-        float min = StageManager.Instance.GetStageSizeMin;
-        float max = StageManager.Instance.GetStageSizeMax;
+        Vector2 min = StageManager.Instance.GetStageSizeMin;
+        Vector2 max = StageManager.Instance.GetStageSizeMax;
 
-        Vector3 pos = new Vector3(Random.Range(min, max), 0, Random.Range(min, max));
+        Vector3 pos = new Vector3(Random.Range(min.x, max.x), 0, Random.Range(min.y, max.y));
 
         if (time1 >= wave1)
 		{
@@ -53,7 +53,7 @@ public class CarrotManager : MonoBehaviour
 			{
                 for (int i = 0; i < 3; ++i)
                 {
-                    pos = new Vector3(Random.Range(min, max), 0, Random.Range(min, max));
+                    pos = new Vector3(Random.Range(min.x, max.x), 0, Random.Range(min.y, max.y));
                     Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
                 }
             }

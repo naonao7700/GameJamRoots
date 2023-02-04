@@ -33,6 +33,7 @@ public class CarrotManager : MonoBehaviour
             return;
 		}
         
+        
         time1 += Time.deltaTime;
         time2 += Time.deltaTime;
         float min = StageManager.Instance.GetStageSizeMin;

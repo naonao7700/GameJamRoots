@@ -88,9 +88,10 @@ GameObject:
   - component: {fileID: 2996812612393677742}
   - component: {fileID: 2547215430132562133}
   - component: {fileID: 32014838187147568}
+  - component: {fileID: -4517125272283363461}
   m_Layer: 5
   m_Name: CarrotCanvas
-  m_TagString: Untagged
+  m_TagString: Carrot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,6 +194,20 @@ MonoBehaviour:
   Carrot1: {fileID: 1021936629059244979}
   Carrot2: {fileID: 7288434267133544893}
   Carrot3: {fileID: 2988546325142672797}
+--- !u!136 &-4517125272283363461
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665573030367903002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2988546325142672797
 GameObject:
   m_ObjectHideFlags: 0

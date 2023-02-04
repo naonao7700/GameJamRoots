@@ -44,11 +44,24 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
+    public int score;
+
     //スコアを加算する処理
-    public void AddScore(int s)
+    public void AddScore(int value )
     {
-        //score += s;
+        score += value;
+        if( score < 0 )
+        {
+            score = 0;
+        }
     }
+
+    public void SetScore( int value )
+    {
+        score = value;
+    }
+
+    public int GetScore() { return score; }
 
     //フェードの時間
     [SerializeField] private float m_fadeTime;

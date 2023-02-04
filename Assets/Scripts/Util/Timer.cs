@@ -15,7 +15,11 @@ public struct Timer
     }
 
     public bool IsEnd() { return count >= time; }
-    public float GetRate() { return count / time; }
+    public float GetRate()
+    {
+        if (time <= 0.0f) return 1.0f;
+        return count / time; 
+    }
     public void Reset()
     {
         count = 0.0f;

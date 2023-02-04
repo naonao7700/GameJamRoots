@@ -525,7 +525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Carrot: {fileID: 1665573030367903002, guid: f381ae9b2fb4cdd4bbcd3bbaf26d38ec, type: 3}
-  carrotSpawn: {fileID: 0}
+  GoldCarrot: {fileID: 1665573030367903002, guid: f381ae9b2fb4cdd4bbcd3bbaf26d38ec, type: 3}
+  carrotSpawn: {fileID: 8300000, guid: 8e87bc8786677074f8372645620f4618, type: 3}
   wave1: 2
   wave2: 100
 --- !u!4 &1433473273

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarrotManager : MonoBehaviour
 {
     [SerializeField] GameObject Carrot;
+    [SerializeField] GameObject GoldCarrot;
 
     public AudioClip carrotSpawn;
     AudioSource audioSource;
@@ -16,6 +17,7 @@ public class CarrotManager : MonoBehaviour
     #endregion
     float time1;
     float time2;
+    static public bool Gold;
 
     void Start()
     {
@@ -25,10 +27,12 @@ public class CarrotManager : MonoBehaviour
 
     void Update()
     {
+        
         if (GameManager.Instance.IsOutGame)
 		{
             return;
 		}
+        
         time1 += Time.deltaTime;
         time2 += Time.deltaTime;
 
@@ -38,7 +42,17 @@ public class CarrotManager : MonoBehaviour
         if (time1 >= wave1)
 		{
             audioSource.PlayOneShot(carrotSpawn);
-            Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
+            if (Random.Range(0, 10) >= 9)
+			{
+                // 20/19ÇÃämó¶Ç≈ã‡êléQî≠ê∂
+                Instantiate(GoldCarrot, pos, Quaternion.Euler(0, 0, 0));
+                Gold = true;
+			}
+            else
+			{
+                Instantiate(Carrot, pos, Quaternion.Euler(0, 0, 0));
+                Gold = false;
+            }
             time1 = 0;
         }
         

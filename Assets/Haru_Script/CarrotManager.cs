@@ -27,11 +27,8 @@ public class CarrotManager : MonoBehaviour
 
     void Update()
     {
-        
-        if (GameManager.Instance.IsOutGame)
-		{
-            return;
-		}
+
+        if (GameManager.Instance.IsOutGame) { return; }
         
         
         time1 += Time.deltaTime;
@@ -44,7 +41,7 @@ public class CarrotManager : MonoBehaviour
         if (time1 >= wave1)
 		{
             audioSource.PlayOneShot(carrotSpawn);
-            if (Random.Range(0, 10) >= 9)
+            if (Random.Range(0, 100) >= 95)
 			{
                 // 20/19ÇÃämó¶Ç≈ã‡êléQî≠ê∂
                 Instantiate(GoldCarrot, pos, Quaternion.Euler(0, 0, 0));

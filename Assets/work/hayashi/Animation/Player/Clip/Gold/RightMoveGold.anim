@@ -61,6 +61,13 @@ AnimationClip:
     path: Sprite
     classID: 212
     script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 41f905a989d8b1f4b94aaefff5168d76, type: 3}
+    attribute: m_Sprite
+    path: Sprite/Carrot
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -70,6 +77,13 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 850496168
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 379788649
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -93,6 +107,7 @@ AnimationClip:
     - {fileID: 21300000, guid: dcdd1db7c2dd0424ea8174307a43cc4f, type: 3}
     - {fileID: 21300000, guid: 0b9f46f0993be9d4d8acde7253c41acd, type: 3}
     - {fileID: 21300000, guid: dcdd1db7c2dd0424ea8174307a43cc4f, type: 3}
+    - {fileID: 21300000, guid: 41f905a989d8b1f4b94aaefff5168d76, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

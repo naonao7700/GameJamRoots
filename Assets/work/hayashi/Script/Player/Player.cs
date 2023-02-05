@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     SpriteRenderer harvestSprite;
 
+    [SerializeField] private GameObject basket;
+
     Animator animator;
 
     //ƒvƒŒƒCƒ„[‚Ì‘å‚«‚³
@@ -69,6 +71,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if( GameManager.Instance.GetScore() >= 250 )
+        {
+            basket.SetActive(true);
+        }
+
         if(isAnimGold && !GoldenManager.Instance.goldenFlag)
         {
             animator.runtimeAnimatorController = nomalContoroller;
@@ -340,6 +347,7 @@ public class Player : MonoBehaviour
     {
         transform.localPosition = Vector3.zero;
         animator.Play("BackStay");
+        basket.SetActive(false);
     }
 
     public void GameEnd()

@@ -251,7 +251,6 @@ public class Player : MonoBehaviour
 
             animator.Play("LeftHarvestEnter");
         }
-        Mole.Instance.SetCarrotState(carrot.GetState());
         switch (carrot.GetState())
         {
             case Carrot.CarrotState.Enter:
@@ -270,7 +269,7 @@ public class Player : MonoBehaviour
                 gameManager.AddScore(30); ;
                 break;
             case Carrot.CarrotState.Active01:
-                carrot.carrotStop = true;
+               
                 harvestSprite.enabled = true;
                 for (int n = 0; n < 1; n++)
                 {
@@ -280,10 +279,11 @@ public class Player : MonoBehaviour
                 gameManager.AddScore(20); ;
                 break;
             case Carrot.CarrotState.Active02:
-                carrot.carrotStop = true;
+                
                 gameManager.AddScore(10); ;
                 break;
         }
+        Mole.Instance.SetCarrotState(carrot.GetState());
 
         if(! GoldenManager.Instance.goldenFlag)
         {

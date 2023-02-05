@@ -92,10 +92,10 @@ public class Carrot : MonoBehaviour
             time += Time.deltaTime;
         }
 
-        if (time >= 3.5f)
+        if (time >= 4.5f)
             Destroy(gameObject);            //破壊
 		
-        if (time >= 3.0f)
+        if (time >= 4.0f)
 		{
             state = CarrotState.Exit;
             //埋まっていく
@@ -118,14 +118,14 @@ public class Carrot : MonoBehaviour
 
         
         //金人参じゃないとき
-        if (time >= 2.5f)
+        if (time >= 3.5f)
         {
             state = CarrotState.Active02;
             //人参の状態変化（枯れる）
             Carrot3.SetActive(true);
             Carrot2.SetActive(false);
         }
-        else if (time >= 1.5f)
+        else if (time >= 3.0f)
         {
             state = CarrotState.Active01;
             //人参の状態変化（傷つき）

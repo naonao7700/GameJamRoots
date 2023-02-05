@@ -2223,7 +2223,7 @@ MonoBehaviour:
     count: 0
     time: 1
   textFlag: 0
-  comboNum: 0
+  comboNum: 3
 --- !u!1 &649266705
 GameObject:
   m_ObjectHideFlags: 0

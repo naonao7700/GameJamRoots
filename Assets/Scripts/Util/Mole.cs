@@ -28,7 +28,7 @@ public class Mole : SingletonMonoBehaviour<Mole>
         mole.localPosition = pos;
 
         textFlag = false;
-        text.enabled = false;
+        text.gameObject.SetActive(false);
 
         jumpCount = 0;
         jumpFlag = false;
@@ -66,7 +66,7 @@ public class Mole : SingletonMonoBehaviour<Mole>
         if ( !textFlag )
         {
             textFlag = true;
-            text.enabled = true;
+            text.gameObject.SetActive(true);
         }
     }
 
@@ -102,7 +102,7 @@ public class Mole : SingletonMonoBehaviour<Mole>
             if( textTimer.IsEnd() )
             {
                 textFlag = false;
-                text.enabled = false;
+                text.gameObject.SetActive(false);
             }
         }
     }

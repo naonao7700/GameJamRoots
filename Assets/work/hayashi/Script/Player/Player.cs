@@ -290,9 +290,13 @@ public class Player : MonoBehaviour
                 gameManager.AddScore(10); ;
                 break;
         }
-        Mole.Instance.SetCarrotState(carrot.GetState());
 
-        if(! GoldenManager.Instance.goldenFlag)
+        if( !carrot.CheckGold() )
+        {
+            Mole.Instance.SetCarrotState(carrot.GetState());
+        }
+
+        if (! GoldenManager.Instance.goldenFlag)
         {
             animator.SetTrigger("isHarvestEnd");
         }

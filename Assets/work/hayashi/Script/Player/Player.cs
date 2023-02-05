@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
     void Move()
     {
         if (isHarvest || gameManager.IsOutGame)
-        {
+        {   
             return;
         }
 
@@ -217,7 +217,7 @@ public class Player : MonoBehaviour
 
     IEnumerator HarvestCarrots(Carrot carrot)
     {
-
+        carrot.carrotStop = true;
         isHarvest = true;
 
         source.PlayOneShot(carrotGrab);
@@ -260,7 +260,7 @@ public class Player : MonoBehaviour
 
             case Carrot.CarrotState.Active00:
 
-                carrot.carrotStop = true;
+               
                 harvestSprite.enabled = true;
                 for (int n = 0; n < 2; n++)
                 {

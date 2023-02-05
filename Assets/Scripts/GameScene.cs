@@ -13,6 +13,7 @@ namespace Scenes
 
         [SerializeField] private AudioClip startSE;
         [SerializeField] private AudioClip timeUpSE;
+        [SerializeField] private AudioClip submitSE;
 
         [SerializeField] private Score score;
 
@@ -20,6 +21,11 @@ namespace Scenes
         [SerializeField] private float readyTime;
         [SerializeField] private float goTime;
         [SerializeField] private int initStep;
+
+        [SerializeField] private Image ruleImage;
+        [SerializeField] private bool ruleFlag;
+        [SerializeField] private bool ruleFlag2;
+        [SerializeField] private Timer ruleTimer;
 
         [SerializeField] private float finishTime;
 
@@ -35,18 +41,59 @@ namespace Scenes
             player.Initialize();
             Mole.Instance.Init();
 
+            ruleFlag = true;
+            ruleFlag2 = false;
+            ruleImage.gameObject.SetActive(true);
+            ruleImage.rectTransform.localScale = Vector3.zero;
+
         }
 
         protected override void OnInit()
         {
-            text.text = "Ready";
-            text.enabled = true;
-            initStep = 0;
-            waitTimer.Reset(readyTime);
+            ruleTimer.Reset();
         }
 
         protected override void InitUpdate()
         {
+            if( ruleFlag )
+            {
+                ruleTimer.DoUpdate(Time.deltaTime);
+                var t = ruleTimer.GetRate();
+                ruleImage.rectTransform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, t);
+
+                if( ruleTimer.IsEnd() )
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        ruleFlag2 = true;
+                        ruleFlag = false;
+                        ruleTimer.Reset();
+                        GameManager.Instance.PlaySE(submitSE);
+                    }
+                }
+
+                return;
+            }
+
+            if( ruleFlag2 )
+            {
+                ruleTimer.DoUpdate(Time.deltaTime);
+                var t = ruleTimer.GetRate();
+                ruleImage.rectTransform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, t);
+
+                if( ruleTimer.IsEnd() )
+                {
+                    ruleFlag2 = false;
+                    text.text = "Ready";
+                    text.enabled = true;
+                    initStep = 0;
+                    waitTimer.Reset(readyTime);
+                    ruleFlag = false;
+                    ruleImage.gameObject.SetActive(false);
+                }
+                return;
+            }
+
             if( waitTimer.IsEnd() )
             {
                 if( initStep == 0 )
